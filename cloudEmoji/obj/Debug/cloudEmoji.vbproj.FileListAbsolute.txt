@@ -1,0 +1,16 @@
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\bin\Debug\CloudEmoji.exe
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\bin\Debug\CloudEmoji.pdb
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\bin\Debug\CloudEmoji.xml
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\obj\Debug\CloudEmoji.frmMain.resources
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\obj\Debug\CloudEmoji.Resources.resources
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\obj\Debug\cloudEmoji.vbproj.GenerateResource.Cache
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\obj\Debug\CloudEmoji.exe
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\obj\Debug\CloudEmoji.xml
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\obj\Debug\CloudEmoji.pdb
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\bin\Debug\CloudEmoji.exe.manifest
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\bin\Debug\CloudEmoji.application
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\obj\Debug\CloudEmoji.exe.manifest
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\obj\Debug\CloudEmoji.application
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\bin\Debug\CloudEmoji.exe.config
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\obj\Debug\CloudEmoji.frmAbout.resources
+C:\Users\chino\Documents\GitHub\cloudemoji_win\CloudEmoji\obj\Debug\CloudEmoji.frmSource.resources
