@@ -59,7 +59,6 @@ Partial Class frmMain
         '
         Me.lstEmoji.FormattingEnabled = True
         Me.lstEmoji.ItemHeight = 24
-        Me.lstEmoji.Items.AddRange(New Object() {"aa", "bb", "cc"})
         Me.lstEmoji.Location = New System.Drawing.Point(120, 36)
         Me.lstEmoji.Name = "lstEmoji"
         Me.lstEmoji.Size = New System.Drawing.Size(142, 292)

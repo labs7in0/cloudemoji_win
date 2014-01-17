@@ -4,7 +4,7 @@
   <description asmv2:iconFile="cloudEmoji.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="CloudEmoji" version="0.1.5128.35707" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="CloudEmoji" version="0.1.5131.5920" language="neutral" processorArchitecture="msil" />
     <commandLine file="CloudEmoji.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CloudEmoji.exe" size="389632">
-      <assemblyIdentity name="CloudEmoji" version="0.1.5128.35707" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CloudEmoji.exe" size="391680">
+      <assemblyIdentity name="CloudEmoji" version="0.1.5131.5920" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>xDLubqBEa7exDWf1UGyMaPsjKYE=</dsig:DigestValue>
+        <dsig:DigestValue>X0Crum+gLDUn5cKzBVqcw/+Ay+8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
