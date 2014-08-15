@@ -102,18 +102,8 @@
     End Sub
 
     Private Sub lstEmoji_DoubleClick(sender As Object, e As EventArgs) Handles lstEmoji.DoubleClick
-        Clipboard.Clear()
+        Clipboard.SetData(DataFormats.Text, CType(lstEmoji.SelectedItem, Object))
         Me.Close()
-        'Threading.Thread.Sleep(300)
-        Dim i As Integer
-        For i = 1 To 10
-            Try
-                Clipboard.SetText(lstEmoji.Items(lstEmoji.SelectedIndex))
-                Return
-            Catch ex As Exception
-                Threading.Thread.Sleep(10)
-            End Try
-        Next
         SendKeys.Send("^V")
     End Sub
 
