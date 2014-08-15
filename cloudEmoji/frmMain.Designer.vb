@@ -40,7 +40,7 @@ Partial Class frmMain
         'lstSource
         '
         Me.lstSource.FormattingEnabled = True
-        Me.lstSource.ItemHeight = 24
+        Me.lstSource.ItemHeight = 12
         Me.lstSource.Location = New System.Drawing.Point(12, 36)
         Me.lstSource.Name = "lstSource"
         Me.lstSource.Size = New System.Drawing.Size(102, 292)
@@ -51,14 +51,14 @@ Partial Class frmMain
         Me.lblSource.AutoSize = True
         Me.lblSource.Location = New System.Drawing.Point(12, 9)
         Me.lblSource.Name = "lblSource"
-        Me.lblSource.Size = New System.Drawing.Size(94, 24)
+        Me.lblSource.Size = New System.Drawing.Size(47, 12)
         Me.lblSource.TabIndex = 1
         Me.lblSource.Text = "Source:"
         '
         'lstEmoji
         '
         Me.lstEmoji.FormattingEnabled = True
-        Me.lstEmoji.ItemHeight = 24
+        Me.lstEmoji.ItemHeight = 12
         Me.lstEmoji.Location = New System.Drawing.Point(120, 36)
         Me.lstEmoji.Name = "lstEmoji"
         Me.lstEmoji.Size = New System.Drawing.Size(142, 292)
@@ -77,30 +77,30 @@ Partial Class frmMain
         '
         Me.menOption.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.meniSourceList, Me.meniRefresh, Me.meniAbout, Me.meniExit})
         Me.menOption.Name = "ContextMenuStrip1"
-        Me.menOption.Size = New System.Drawing.Size(243, 148)
+        Me.menOption.Size = New System.Drawing.Size(155, 92)
         '
         'meniSourceList
         '
         Me.meniSourceList.Name = "meniSourceList"
-        Me.meniSourceList.Size = New System.Drawing.Size(242, 36)
+        Me.meniSourceList.Size = New System.Drawing.Size(154, 22)
         Me.meniSourceList.Text = "Source List(&S)"
         '
         'meniRefresh
         '
         Me.meniRefresh.Name = "meniRefresh"
-        Me.meniRefresh.Size = New System.Drawing.Size(242, 36)
+        Me.meniRefresh.Size = New System.Drawing.Size(154, 22)
         Me.meniRefresh.Text = "Refresh(&R)"
         '
         'meniAbout
         '
         Me.meniAbout.Name = "meniAbout"
-        Me.meniAbout.Size = New System.Drawing.Size(242, 36)
+        Me.meniAbout.Size = New System.Drawing.Size(154, 22)
         Me.meniAbout.Text = "About(&A)"
         '
         'meniExit
         '
         Me.meniExit.Name = "meniExit"
-        Me.meniExit.Size = New System.Drawing.Size(242, 36)
+        Me.meniExit.Size = New System.Drawing.Size(154, 22)
         Me.meniExit.Text = "Exit(&E)"
         '
         'ntyIcon
@@ -123,9 +123,7 @@ Partial Class frmMain
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmMain"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Cloud Emoji"
-        Me.TopMost = True
         Me.menOption.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()

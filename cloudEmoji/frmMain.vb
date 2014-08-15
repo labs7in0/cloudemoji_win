@@ -20,6 +20,9 @@
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.Hide()
+        Me.Visible = False
+        Me.Refresh()
         cacheXML = Application.StartupPath + cacheXML
         configXML = Application.StartupPath + configXML
         cacheTemp = Application.StartupPath + cacheTemp
@@ -38,8 +41,10 @@
     End Sub
 
     Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        e.Cancel = True
-        Me.Hide()
+        If Me.Visible Then
+            e.Cancel = True
+            Me.Hide()
+        End If
     End Sub
 
     Private Sub btnOption_MouseDown(sender As Object, e As MouseEventArgs) Handles btnOption.MouseDown
@@ -117,5 +122,9 @@
             'Console.WriteLine(result(CType(i, String) + ":" + CType(j, String)))
             lstEmoji.Items.Add(parseCache(CType(i, String) + ":" + CType(j, String)))
         Next
+    End Sub
+
+    Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        Me.Hide()
     End Sub
 End Class
