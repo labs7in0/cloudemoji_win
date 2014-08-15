@@ -31,6 +31,9 @@
             End If
             source = defaultUrl
         End If
+        If System.IO.File.Exists(cacheXML) Then
+            UpdateView()
+        End If
         Call meniRefresh_Click(sender, e)
     End Sub
 
