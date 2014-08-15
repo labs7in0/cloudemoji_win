@@ -24,7 +24,6 @@
             End If
             source = "http://lib.best33.com/share/cloudKT.xml"
         End If
-
         Call meniRefresh_Click(sender, e)
     End Sub
 
@@ -42,7 +41,7 @@
     End Sub
 
     Private Sub meniSourceList_Click(sender As Object, e As EventArgs) Handles meniSourceList.Click
-        source = InputBox("Source(XML File):", , clsXML.GetXML("source", "", Application.StartupPath + "\config.xml"))
+        source = InputBox("Source(XML File):", source, clsXML.GetXML("source", "", Application.StartupPath + "\config.xml"))
         If Not clsXML.WriteXML("source", source, Application.StartupPath + "\config.xml") Then
             clsXML.ResetXML(Application.StartupPath + "\config.xml")
             clsXML.WriteXML("source", source, Application.StartupPath + "\config.xml")
@@ -50,13 +49,24 @@
         Call meniRefresh_Click(sender, e)
     End Sub
 
-    Private Sub meniRefresh_Click(sender As Object, e As EventArgs) Handles meniRefresh.Click
-        Try
-            clsXML.refreshCache(source)
-        Catch ex As Exception
-            MsgBox("网络更新失败！请检查更新源后重试。错误信息：" + Chr(10) + Chr(13) + ex.ToString)
-        End Try
+    Public Sub DownloadFileFinished(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs)
+        If e.Error IsNot Nothing Then
+            If MsgBox("网络更新失败！" + Chr(10) + Chr(13) + e.Error.ToString, MsgBoxStyle.Critical + MsgBoxStyle.RetryCancel) = MsgBoxResult.Retry Then
+                Call DownloadXML()
+            End If
+        Else
+            UpdateView()
+        End If
+    End Sub
 
+    Private Sub DownloadXML()
+        Dim strFilePath As String = Application.StartupPath + "\cache.xml"
+        Dim dl As New System.Net.WebClient()
+        AddHandler dl.DownloadFileCompleted, AddressOf DownloadFileFinished
+        dl.DownloadFileAsync(New Uri(source), strFilePath)
+    End Sub
+
+    Private Sub UpdateView()
         Dim i As Integer
         Dim result As Dictionary(Of String, String) = clsXML.sourceParser()
         'Console.WriteLine(result("Author"))
@@ -66,6 +76,10 @@
             'Console.WriteLine(result(CType(i, String) + ":0"))
             lstSource.Items.Add(result(CType(i, String) + ":0"))
         Next
+    End Sub
+
+    Private Sub meniRefresh_Click(sender As Object, e As EventArgs) Handles meniRefresh.Click
+        DownloadXML()
     End Sub
 
     Private Sub meniAbout_Click(sender As Object, e As EventArgs) Handles meniAbout.Click
