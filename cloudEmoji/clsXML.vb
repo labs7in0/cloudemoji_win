@@ -123,15 +123,10 @@ Public Class clsXML
         Return result
     End Function
 
-    Public Shared Function refreshCache(url As String) As Boolean
+    Public Shared Sub refreshCache(url As String)
         Dim strFilePath As String = Application.StartupPath + "\cache.xml"
         Dim dl As New System.Net.WebClient()
-        Try
-            dl.DownloadFile(url, strFilePath)
-            dl.Dispose()
-        Catch ex As Exception
-            Return False
-        End Try
-        Return True
-    End Function
+        dl.DownloadFile(url, strFilePath)
+        dl.Dispose()
+    End Sub
 End Class

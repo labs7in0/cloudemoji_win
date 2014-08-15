@@ -51,10 +51,12 @@
     End Sub
 
     Private Sub meniRefresh_Click(sender As Object, e As EventArgs) Handles meniRefresh.Click
-        If Not clsXML.refreshCache(source) Then
-            MsgBox("网络更新失败！请检查更新源后重试。")
-            Return
-        End If
+        Try
+            clsXML.refreshCache(source)
+        Catch ex As Exception
+            MsgBox("网络更新失败！请检查更新源后重试。错误信息：" + Chr(10) + Chr(13) + ex.ToString)
+        End Try
+
 
         Dim i As Integer
         Dim result As Dictionary(Of String, String) = clsXML.sourceParser()
