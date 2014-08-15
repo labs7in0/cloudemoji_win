@@ -18,11 +18,11 @@
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         source = clsXML.GetXML("source", "", Application.StartupPath + "\config.xml")
         If source = "" Then
-            If Not clsXML.WriteXML("source", "http://dl.dropboxusercontent.com/u/120725807/test.xml", Application.StartupPath + "\config.xml") Then
+            If Not clsXML.WriteXML("source", "http://lib.best33.com/share/cloudKT.xml", Application.StartupPath + "\config.xml") Then
                 clsXML.ResetXML(Application.StartupPath + "\config.xml")
-                clsXML.WriteXML("source", "http://dl.dropboxusercontent.com/u/120725807/test.xml", Application.StartupPath + "\config.xml")
+                clsXML.WriteXML("source", "http://lib.best33.com/share/cloudKT.xml", Application.StartupPath + "\config.xml")
             End If
-            source = "http://dl.dropboxusercontent.com/u/120725807/test.xml"
+            source = "http://lib.best33.com/share/cloudKT.xml"
         End If
 
         Call meniRefresh_Click(sender, e)
@@ -42,7 +42,7 @@
     End Sub
 
     Private Sub meniSourceList_Click(sender As Object, e As EventArgs) Handles meniSourceList.Click
-        source = InputBox("Source(XML File):", , "http://dl.dropboxusercontent.com/u/120725807/test.xml")
+        source = InputBox("Source(XML File):", , clsXML.GetXML("source", "", Application.StartupPath + "\config.xml"))
         If Not clsXML.WriteXML("source", source, Application.StartupPath + "\config.xml") Then
             clsXML.ResetXML(Application.StartupPath + "\config.xml")
             clsXML.WriteXML("source", source, Application.StartupPath + "\config.xml")
@@ -51,7 +51,10 @@
     End Sub
 
     Private Sub meniRefresh_Click(sender As Object, e As EventArgs) Handles meniRefresh.Click
-        clsXML.refreshCache(source)
+        If Not clsXML.refreshCache(source) Then
+            MsgBox("网络更新失败！请检查更新源后重试。")
+            Return
+        End If
 
         Dim i As Integer
         Dim result As Dictionary(Of String, String) = clsXML.sourceParser()
