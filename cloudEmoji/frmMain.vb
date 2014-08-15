@@ -1,6 +1,10 @@
 ﻿Public Class frmMain
     Private source As String
     Private parseCache As Dictionary(Of String, String)
+    Private cacheXML As String = "\cache.xml"
+    Private configXML As String = "\config.xml"
+    Private cacheTemp As String = "\cache.xml.tmp"
+    Private defaultUrl As String = "http://lib.best33.com/share/cloudKT.xml"
     Public Const WM_HOTKEY = &H312
     Public Const GWL_WNDPROC = (-4)
 
@@ -16,13 +20,16 @@
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
-        source = clsXML.GetXML("source", "", Application.StartupPath + "\config.xml")
+        cacheXML = Application.StartupPath + cacheXML
+        configXML = Application.StartupPath + configXML
+        cacheTemp = Application.StartupPath + cacheTemp
+        source = clsXML.GetXML("source", "", configXML)
         If source = "" Then
-            If Not clsXML.WriteXML("source", "http://lib.best33.com/share/cloudKT.xml", Application.StartupPath + "\config.xml") Then
+            If Not clsXML.WriteXML("source", defaultUrl, configXML) Then
                 clsXML.ResetXML(Application.StartupPath + "\config.xml")
-                clsXML.WriteXML("source", "http://lib.best33.com/share/cloudKT.xml", Application.StartupPath + "\config.xml")
+                clsXML.WriteXML("source", defaultUrl, configXML)
             End If
-            source = "http://lib.best33.com/share/cloudKT.xml"
+            source = defaultUrl
         End If
         Call meniRefresh_Click(sender, e)
     End Sub
@@ -41,10 +48,10 @@
     End Sub
 
     Private Sub meniSourceList_Click(sender As Object, e As EventArgs) Handles meniSourceList.Click
-        source = InputBox("Source(XML File):", source, clsXML.GetXML("source", "", Application.StartupPath + "\config.xml"))
-        If Not clsXML.WriteXML("source", source, Application.StartupPath + "\config.xml") Then
-            clsXML.ResetXML(Application.StartupPath + "\config.xml")
-            clsXML.WriteXML("source", source, Application.StartupPath + "\config.xml")
+        source = InputBox("Source(XML File):", source, clsXML.GetXML("source", defaultUrl, configXML))
+        If Not clsXML.WriteXML("source", source, configXML) Then
+            clsXML.ResetXML(configXML)
+            clsXML.WriteXML("source", source, configXML)
         End If
         Call meniRefresh_Click(sender, e)
     End Sub
@@ -55,15 +62,16 @@
                 Call DownloadXML()
             End If
         Else
+            FileCopy(cacheTemp, cacheXML)
+            Kill(cacheTemp)
             UpdateView()
         End If
     End Sub
 
     Private Sub DownloadXML()
-        Dim strFilePath As String = Application.StartupPath + "\cache.xml"
         Dim dl As New System.Net.WebClient()
         AddHandler dl.DownloadFileCompleted, AddressOf DownloadFileFinished
-        dl.DownloadFileAsync(New Uri(source), strFilePath)
+        dl.DownloadFileAsync(New Uri(source), cacheTemp)
     End Sub
 
     Private Sub UpdateView()
