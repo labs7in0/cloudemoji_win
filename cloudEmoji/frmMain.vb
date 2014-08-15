@@ -57,14 +57,13 @@
             MsgBox("网络更新失败！请检查更新源后重试。错误信息：" + Chr(10) + Chr(13) + ex.ToString)
         End Try
 
-
         Dim i As Integer
         Dim result As Dictionary(Of String, String) = clsXML.sourceParser()
-        Console.WriteLine(result("Author"))
-        Console.WriteLine(result("URL"))
+        'Console.WriteLine(result("Author"))
+        'Console.WriteLine(result("URL"))
         lstSource.Items.Clear()
         For i = 1 To result(0)
-            Console.WriteLine(result(CType(i, String) + ":0"))
+            'Console.WriteLine(result(CType(i, String) + ":0"))
             lstSource.Items.Add(result(CType(i, String) + ":0"))
         Next
     End Sub
