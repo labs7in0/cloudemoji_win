@@ -1,6 +1,6 @@
 ﻿Public Class frmMain
     Private source As String
-
+    Private parseCache As Dictionary(Of String, String)
     Public Const WM_HOTKEY = &H312
     Public Const GWL_WNDPROC = (-4)
 
@@ -68,13 +68,13 @@
 
     Private Sub UpdateView()
         Dim i As Integer
-        Dim result As Dictionary(Of String, String) = clsXML.sourceParser()
+        parseCache = clsXML.sourceParser()
         'Console.WriteLine(result("Author"))
         'Console.WriteLine(result("URL"))
         lstSource.Items.Clear()
-        For i = 1 To result(0)
+        For i = 1 To parseCache(0)
             'Console.WriteLine(result(CType(i, String) + ":0"))
-            lstSource.Items.Add(result(CType(i, String) + ":0"))
+            lstSource.Items.Add(parseCache(CType(i, String) + ":0"))
         Next
     End Sub
 
@@ -101,12 +101,12 @@
     Private Sub lstSource_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstSource.SelectedIndexChanged
         Dim i, j As Integer
         i = lstSource.SelectedIndex + 1
-        Dim result As Dictionary(Of String, String) = clsXML.sourceParser()
-        Console.WriteLine(result(CType(i, String) + ":0"))
+        'Dim result As Dictionary(Of String, String) = clsXML.sourceParser()
+        'Console.WriteLine(result(CType(i, String) + ":0"))
         lstEmoji.Items.Clear()
-        For j = 1 To CType(result(i), Integer) - 1
-            Console.WriteLine(result(CType(i, String) + ":" + CType(j, String)))
-            lstEmoji.Items.Add(result(CType(i, String) + ":" + CType(j, String)))
+        For j = 1 To CType(parseCache(i), Integer) - 1
+            'Console.WriteLine(result(CType(i, String) + ":" + CType(j, String)))
+            lstEmoji.Items.Add(parseCache(CType(i, String) + ":" + CType(j, String)))
         Next
     End Sub
 End Class
