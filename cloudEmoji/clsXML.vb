@@ -69,64 +69,64 @@ Public Class clsXML
     Public Shared Function sourceParser() As Dictionary(Of String, String)
         Dim result As New Dictionary(Of String, String)
         Dim i, j As Integer
+        Dim reader As XmlReader
+        Try
+            reader = XmlReader.Create(Application.StartupPath + "\cache.xml")
+        Catch ex As Exception
+            MsgBox("缓存文件读取失败", MsgBoxStyle.Exclamation)
+            result(0) = 0
+            Return result
+        End Try
 
-        Using reader As XmlReader = XmlReader.Create(Application.StartupPath + "\cache.xml")
-            While reader.Read()
-                If reader.IsStartElement() Then
-                    ' See if perls element or article element.
-                    If reader.Name = "emoji" Then
-                        Console.WriteLine("Start <emoji> element.")
-                    ElseIf reader.Name = "infoos" Then
-                        Console.WriteLine("Start <infoos> element.")
-                        i = 0
-                    ElseIf reader.Name = "info" Then
-                        Console.WriteLine("Start <info> element.")
+        While reader.Read()
+            If reader.IsStartElement() Then
+                ' See if perls element or article element.
+                If reader.Name = "emoji" Then
+                    Console.WriteLine("Start <emoji> element.")
+                ElseIf reader.Name = "infoos" Then
+                    Console.WriteLine("Start <infoos> element.")
+                    i = 0
+                ElseIf reader.Name = "info" Then
+                    Console.WriteLine("Start <info> element.")
 
-                        If reader.Read() Then
-                            If i = 0 Then
-                                result.Add("Author", reader.Value.Trim())
-                                i = 1
-                            Else
-                                result.Add("URL", reader.Value.Trim())
-                                i = 0
-                            End If
-                        End If
-                    ElseIf reader.Name = "category" Then
-                        Console.WriteLine("Start <category> element.")
-
-                        ' Get name attribute.
-                        Dim attribute As String = reader("name")
-                        If attribute IsNot Nothing Then
-                            result.Add(i, j)
-                            i = i + 1
-                            Console.WriteLine("  Category" + CType(i, String), attribute)
-                            result.Add(CType(i, String) + ":0", attribute)
-                            j = 1
-                        End If
-                    ElseIf reader.Name = "string" Then
-                        Console.WriteLine("Start <string> element.")
-
-                        ' Text data.
-                        If reader.Read() Then
-                            Console.WriteLine("  String" + CType(j, String), reader.Value.Trim())
-                            result.Add(CType(i, String) + ":" + CType(j, String), reader.Value.Trim())
-                            j = j + 1
+                    If reader.Read() Then
+                        If i = 0 Then
+                            result.Add("Author", reader.Value.Trim())
+                            i = 1
+                        Else
+                            result.Add("URL", reader.Value.Trim())
+                            i = 0
                         End If
                     End If
+                ElseIf reader.Name = "category" Then
+                    Console.WriteLine("Start <category> element.")
 
+                    ' Get name attribute.
+                    Dim attribute As String = reader("name")
+                    If attribute IsNot Nothing Then
+                        result.Add(i, j)
+                        i = i + 1
+                        Console.WriteLine("  Category" + CType(i, String), attribute)
+                        result.Add(CType(i, String) + ":0", attribute)
+                        j = 1
+                    End If
+                ElseIf reader.Name = "string" Then
+                    Console.WriteLine("Start <string> element.")
+
+                    ' Text data.
+                    If reader.Read() Then
+                        Console.WriteLine("  String" + CType(j, String), reader.Value.Trim())
+                        result.Add(CType(i, String) + ":" + CType(j, String), reader.Value.Trim())
+                        j = j + 1
+                    End If
                 End If
-            End While
-            result.Add(i, j)
-            result(0) = i
-        End Using
+
+            End If
+        End While
+        result.Add(i, j)
+        result(0) = i
 
         Return result
     End Function
 
-    Public Shared Sub refreshCache(url As String)
-        Dim strFilePath As String = Application.StartupPath + "\cache.xml"
-        Dim dl As New System.Net.WebClient()
-        dl.DownloadFile(url, strFilePath)
-        dl.Dispose()
-    End Sub
 End Class
